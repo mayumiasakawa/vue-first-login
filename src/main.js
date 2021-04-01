@@ -7,8 +7,26 @@ Vue.config.productionTip = false
 axios.defaults.baseURL =
 'https://firestore.googleapis.com/v1/projects/vue-first-login/databases/(default)/documents/';
 
-axios.interceptors.request.use();
-axios.interceptors.response.use();
+const interceptorsRequest = axios.interceptors.request.use(
+  config => {
+    return config
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+const interceptorsResponse = axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.request.eject(interceptorsRequest);
+axios.interceptors.request.eject(interceptorsResponse);
 
 new Vue({
   render: h => h(App),
