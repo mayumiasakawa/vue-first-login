@@ -1,9 +1,16 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Comments from './views/Comments.vue';
 
-Vue.user(Router);
+
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
-  routes: []
+  routes: [
+    {
+      path: '/',
+      component: Comments
+    }
+  ]
 });
