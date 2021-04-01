@@ -28,7 +28,7 @@ const interceptorsResponse = axios.interceptors.response.use(
 );
 
 axios.interceptors.request.eject(interceptorsRequest);
-axios.interceptors.request.eject(interceptorsResponse);
+axios.interceptors.response.eject(interceptorsResponse);
 
 new Vue({
   router,
