@@ -28,6 +28,15 @@ export default {
       returun:""
     }
   },
+  created(){
+    axios.get(
+      'https://firestore.googleapis.com/v1/projects/vue-first-login/databases/(default)/documents/comments',
+    )
+    .then(response => {
+      console.log(response);
+    });
+  },
+
   methods: {
     createComment(){
       axios.post(
