@@ -20,9 +20,9 @@
     v-for="post in posts"
     :key="post.name"
     >
-   <br>
-   <div>名前：{{ post.fields.name.stringValue }}</div>
-   <div>コメント：{{ post.fields.comment.stringValue }}</div>
+    <br>
+    <div>名前：{{ post.fields.name.stringValue }}</div>
+    <div>コメント：{{ post.fields.comment.stringValue }}</div>
     </div>
   </div>
 </template>
@@ -42,7 +42,8 @@ export default {
       'https://firestore.googleapis.com/v1/projects/vue-first-login/databases/(default)/documents/comments',
     )
     .then(response => {
-      this.posts = response.data.document;
+      this.posts = response.data.documents;
+      console.log(response.data.documents);
     });
   },
 
