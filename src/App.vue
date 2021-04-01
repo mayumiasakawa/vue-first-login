@@ -16,6 +16,14 @@
       v-model="comment"
     ></textarea>
     <h2>掲示板</h2>
+    <div
+    v-for="post in posts"
+    :key="post.name"
+    >
+   <br>
+   <div>名前：{{ post.fields.name.stringValue }}</div>
+   <div>コメント：{{ post.fields.comment.stringValue }}</div>
+    </div>
   </div>
 </template>
 
@@ -25,22 +33,24 @@ export default {
   data(){
     return {
       name:"",
-      returun:""
-    }
+      comment:"",
+      posts: []
+    };
   },
   created(){
     axios.get(
       'https://firestore.googleapis.com/v1/projects/vue-first-login/databases/(default)/documents/comments',
     )
     .then(response => {
-      console.log(response);
+      this.posts = response.data.document;
     });
   },
 
   methods: {
     createComment(){
-      axios.post(
-        'https://firestore.googleapis.com/v1/projects/vue-first-login/databases/(default)/documents/comments',
+      axios
+        .post(
+          'https://firestore.googleapis.com/v1/projects/vue-first-login/databases/(default)/documents/comments',
         {
           fields: {
             name: {
@@ -51,18 +61,12 @@ export default {
             }
           }
         }  
-      )
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      );
       this.name = "";
       this.comment = "";
     }
   }
-}
+};
 </script>
 
 <style>
