@@ -30,9 +30,10 @@ const interceptorsResponse = axios.interceptors.response.use(
 axios.interceptors.request.eject(interceptorsRequest);
 axios.interceptors.response.eject(interceptorsResponse);
 
-store.dispatch('autoLogin');
+store.dispatch('autoLogin')TouchEvent(()=>{
 new Vue({
   router,
   store,
   render: h => h(App),
-}).$mount('#app')
+}).$mount('#app');
+});
