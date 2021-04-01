@@ -55,7 +55,7 @@ export default new Vuex.Store({
           router.push('/');
         });
     },
-    logout({ commit }) {
+    logout({ commit }){
       commit('updateIdToken', null);
       localStorage.removeItem('idToken');
       localStorage.removeItem('expiryTimeMs');
